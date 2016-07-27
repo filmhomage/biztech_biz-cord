@@ -1,4 +1,4 @@
-package com.k4.controller;
+package com.k4t2.controller;
 
 import javax.ws.rs.core.MediaType;
 

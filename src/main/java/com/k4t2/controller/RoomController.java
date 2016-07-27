@@ -1,4 +1,4 @@
-package com.k4.controller;
+package com.k4t2.controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.k4.dao.UserDao;
-import com.k4.entity.User;
+import com.k4t2.model.User;
+import com.k4t2.repository.doma.UserDao;
 
 @RestController
 @RequestMapping("/room")

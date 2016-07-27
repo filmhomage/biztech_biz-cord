@@ -1,19 +1,19 @@
-package com.k4.controller;
+package com.k4t2.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-public class AuthController {
+@RestController("/user")
+public class UserController {
 
 	@RequestMapping(method=RequestMethod.POST)
-	public void login() {
+	public void make() {
 		
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE)
-	public void logout() {
+	@RequestMapping(method=RequestMethod.POST)
+	public void invite() {
 		
 	}
 }

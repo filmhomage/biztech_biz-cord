@@ -1,4 +1,4 @@
-package com.k4.entity;
+package com.k4t2.model;
 
 import org.seasar.doma.Entity;
 import org.seasar.doma.GeneratedValue;
