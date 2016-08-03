@@ -12,7 +12,7 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(method=RequestMethod.GET)
 	public void invite() {
 		
 	}
