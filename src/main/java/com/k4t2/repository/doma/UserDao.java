@@ -16,4 +16,6 @@ public interface UserDao {
     public List<User> selectAll();
     @Insert
     public int insert(User user);
+    @Select
+    public User selectById();
 }

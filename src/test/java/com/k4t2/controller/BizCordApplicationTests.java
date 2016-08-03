@@ -1,4 +1,4 @@
-package com.k4;
+package com.k4t2.controller;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
