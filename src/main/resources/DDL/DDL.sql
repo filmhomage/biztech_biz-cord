@@ -8,21 +8,21 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema db_k4
+-- Schema biz_cord
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema db_k4
+-- Schema biz_cord
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `db_k4` DEFAULT CHARACTER SET utf8mb4 ;
-USE `db_k4` ;
+CREATE SCHEMA IF NOT EXISTS `biz_cord` DEFAULT CHARACTER SET utf8mb4 ;
+USE `biz_cord` ;
 
 -- -----------------------------------------------------
--- Table `db_k4`.`Room`
+-- Table `biz_cord`.`Room`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_k4`.`Room` ;
+DROP TABLE IF EXISTS `biz_cord`.`Room` ;
 
-CREATE TABLE IF NOT EXISTS `db_k4`.`Room` (
+CREATE TABLE IF NOT EXISTS `biz_cord`.`Room` (
   `Id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(45) NOT NULL,
   `Status` CHAR(2) NOT NULL,
@@ -31,11 +31,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `db_k4`.`User`
+-- Table `biz_cord`.`User`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_k4`.`User` ;
+DROP TABLE IF EXISTS `biz_cord`.`User` ;
 
-CREATE TABLE IF NOT EXISTS `db_k4`.`User` (
+CREATE TABLE IF NOT EXISTS `biz_cord`.`User` (
   `Key` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `Id` VARCHAR(20) NOT NULL,
   `Pw` VARCHAR(40) NOT NULL,
@@ -47,11 +47,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `db_k4`.`UserRelRoom`
+-- Table `biz_cord`.`UserRelRoom`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_k4`.`UserRelRoom` ;
+DROP TABLE IF EXISTS `biz_cord`.`UserRelRoom` ;
 
-CREATE TABLE IF NOT EXISTS `db_k4`.`UserRelRoom` (
+CREATE TABLE IF NOT EXISTS `biz_cord`.`UserRelRoom` (
   `UserKey` INT UNSIGNED NOT NULL,
   `RoomId` INT UNSIGNED NOT NULL,
   `Type` CHAR(2) NOT NULL,
@@ -59,23 +59,23 @@ CREATE TABLE IF NOT EXISTS `db_k4`.`UserRelRoom` (
   INDEX `fk_UserRelRoom_Room1_idx` (`RoomId` ASC),
   CONSTRAINT `fk_UserRelRoom_User`
     FOREIGN KEY (`UserKey`)
-    REFERENCES `db_k4`.`User` (`Key`)
+    REFERENCES `biz_cord`.`User` (`Key`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_UserRelRoom_Room1`
     FOREIGN KEY (`RoomId`)
-    REFERENCES `db_k4`.`Room` (`Id`)
+    REFERENCES `biz_cord`.`Room` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `db_k4`.`Message`
+-- Table `biz_cord`.`Message`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_k4`.`Message` ;
+DROP TABLE IF EXISTS `biz_cord`.`Message` ;
 
-CREATE TABLE IF NOT EXISTS `db_k4`.`Message` (
+CREATE TABLE IF NOT EXISTS `biz_cord`.`Message` (
   `UserKey` INT UNSIGNED NOT NULL,
   `RoomId` INT UNSIGNED NOT NULL,
   `Content` TEXT NOT NULL,
@@ -84,23 +84,23 @@ CREATE TABLE IF NOT EXISTS `db_k4`.`Message` (
   INDEX `fk_Message_Room1_idx` (`RoomId` ASC),
   CONSTRAINT `fk_Message_User1`
     FOREIGN KEY (`UserKey`)
-    REFERENCES `db_k4`.`User` (`Key`)
+    REFERENCES `biz_cord`.`User` (`Key`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Message_Room1`
     FOREIGN KEY (`RoomId`)
-    REFERENCES `db_k4`.`Room` (`Id`)
+    REFERENCES `biz_cord`.`Room` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `db_k4`.`UserRelMessage`
+-- Table `biz_cord`.`UserRelMessage`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_k4`.`UserRelMessage` ;
+DROP TABLE IF EXISTS `biz_cord`.`UserRelMessage` ;
 
-CREATE TABLE IF NOT EXISTS `db_k4`.`UserRelMessage` (
+CREATE TABLE IF NOT EXISTS `biz_cord`.`UserRelMessage` (
   `UserKey` INT UNSIGNED NOT NULL,
   `RoomId` INT UNSIGNED NOT NULL,
   `Time` DATETIME NOT NULL,
@@ -108,12 +108,12 @@ CREATE TABLE IF NOT EXISTS `db_k4`.`UserRelMessage` (
   INDEX `fk_UserRelMessage_Room1_idx` (`RoomId` ASC),
   CONSTRAINT `fk_UserRelMessage_User1`
     FOREIGN KEY (`UserKey`)
-    REFERENCES `db_k4`.`User` (`Key`)
+    REFERENCES `biz_cord`.`User` (`Key`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_UserRelMessage_Room1`
     FOREIGN KEY (`RoomId`)
-    REFERENCES `db_k4`.`Room` (`Id`)
+    REFERENCES `biz_cord`.`Room` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
