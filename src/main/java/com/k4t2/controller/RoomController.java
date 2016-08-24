@@ -1,6 +1,7 @@
 package com.k4t2.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.ws.rs.core.MediaType;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.k4t2.model.Room;
 import com.k4t2.model.User;
+import com.k4t2.repository.doma.RoomDao;
 import com.k4t2.repository.doma.UserDao;
 
 @RestController
@@ -32,8 +35,11 @@ public class RoomController {
 	@Autowired
 	UserDao userDao;
 	
+	@Autowired
+	RoomDao roomDao;
 	
 	@RequestMapping(method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON})
+	
 	public Map<String, Integer> addUser(@RequestBody User user) {
 		int id = userDao.insert(user);
 		Map<String, Integer> data = new HashMap<>();
@@ -42,8 +48,9 @@ public class RoomController {
 	}
 
 	@RequestMapping(method= RequestMethod.GET)
-	public void list() {
-
+	public List<Room> list() {
+		List<Room> listRoom = roomDao.selectRoom();
+		return listRoom;
 	}
 
 	@RequestMapping(method= RequestMethod.POST)
