@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,56 +20,40 @@ import com.k4t2.model.User;
 import com.k4t2.repository.doma.RoomDao;
 import com.k4t2.repository.doma.UserDao;
 
+@Controller
 @RestController
 @RequestMapping("/room")
 @CrossOrigin("*")
 public class RoomController {
 
 	/**
-	 * |★|部屋一覧|
-	 * |★|部屋作成|
-	 * ||部屋編集|
-	 * |★|部屋参加|
-	 * ||部屋退出|
+	 * |★|部屋一覧| |★|部屋作成| ||部屋編集| |★|部屋参加| ||部屋退出|
 	 */
 
 	@Autowired
-	UserDao userDao;
-	
-	@Autowired
 	RoomDao roomDao;
-	
-	@RequestMapping(method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON})
-	
-	public Map<String, Integer> addUser(@RequestBody User user) {
-		int id = userDao.insert(user);
-		Map<String, Integer> data = new HashMap<>();
-		data.put("id", id);
-		return data;
-	}
 
-	@RequestMapping(method= RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public List<Room> list() {
 		List<Room> listRoom = roomDao.selectRoom();
 		return listRoom;
 	}
 
-	@RequestMapping(method= RequestMethod.POST)
-	public void make() {
-
+	@RequestMapping(method = RequestMethod.POST)
+	public int make(@RequestBody Room room) {
+		return roomDao.insertRoom(room);
 	}
 
-	@RequestMapping(method= RequestMethod.PUT)
+	@RequestMapping(method = RequestMethod.PUT)
 	public void manage() {
-
 	}
 
-	@RequestMapping(path = "/{id}/{userId}", method= RequestMethod.POST)
+	@RequestMapping(path = "/{id}/{userId}", method = RequestMethod.POST)
 	public void rideOn(@PathVariable("id") long roomId, @PathVariable("userId") long userId) {
 
 	}
 
-	@RequestMapping(path = "/{id}/{userId}", method= RequestMethod.DELETE)
+	@RequestMapping(path = "/{id}/{userId}", method = RequestMethod.DELETE)
 	public void rideOff() {
 
 	}
