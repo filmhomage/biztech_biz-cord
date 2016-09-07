@@ -17,5 +17,5 @@ public interface UserDao {
     @Insert
     public int insert(User user);
     @Select
-    public User selectById();
+    public User selectById(String id);
 }

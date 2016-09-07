@@ -9,6 +9,8 @@ import org.seasar.doma.Id;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer id;
+    public Integer Key;
+    public String id;
     public String name;
+    public String pw;
 }

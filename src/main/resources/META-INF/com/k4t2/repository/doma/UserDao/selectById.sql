@@ -1,1 +1,1 @@
-select * from User;
+select Key,Id ,Pw from User where Id=/*id*/4;
